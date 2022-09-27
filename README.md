@@ -25,7 +25,7 @@ _Domain_ is an entry point to the domain logic forming the core of the applicati
 _Responder_ is the presentation logic to build an HTTP Response using data it receives from the _Action_. It deals with status codes, headers and cookies, content, formatting and transformation, templates and views, and so on.
 
 
-You can find the rest of this explanation on [`on the repository of Paul M. Jones at this address`](https://github.com/pmjones/adr/blob/master/README.md) repository.
+You can find the rest of this explanation [`on the repository of Paul M. Jones`](https://github.com/pmjones/adr/blob/master/README.md).
 
 ## Getting started
 
