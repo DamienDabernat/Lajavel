@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group 'org.lajavel'
+version '0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'io.javalin:javalin:4.6.4'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.31'
+}
+
+test {
+    useJUnitPlatform()
+}

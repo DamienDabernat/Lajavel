@@ -1,0 +1,12 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<center><br />
+
+<img src="{{ getCover }}" width="120"/> <br />
+
+Le livre est <b>{{ title }}</b> de {{ author }}!
+
+</center></html>

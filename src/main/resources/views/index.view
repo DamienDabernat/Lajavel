@@ -1,0 +1,18 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<center><br />
+
+Bonjour,
+
+vous pouvez rechercher un livre grâce à son isbn via : <br /><br />
+
+HTML : <a href="http://localhost:7070/html/search?isbn=2207261883">http://localhost:7070/html/search?isbn=2207261883</a><br />
+
+<br />
+
+API : <a href="http://localhost:7070/api/search?isbn=2207261883">http://localhost:7070/api/search?isbn=2207261883</a><br />
+
+</center></html>
