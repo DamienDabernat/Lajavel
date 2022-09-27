@@ -30,7 +30,7 @@ public class View {
         Matcher m = Pattern.compile("\\{\\{([^{{}}]*)\\}\\}").matcher(viewContent);
 
         // Creating the target string buffer
-        StringBuilder sb = new StringBuilder();
+        StringBuffer sb = new StringBuffer();
 
         while (m.find()) {
             String oneProperty = m.group(1).replaceAll("\\s+","");
