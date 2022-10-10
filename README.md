@@ -4,7 +4,7 @@ Lajavel is a project given to students to deepen their knowledge in object-orien
 
 It is an attempt at a framework with the particularity of not following the conventional MVC architecture design pattern but rather the ADR pattern.
 
-The ADR model has been perfectly documented by Paul M. Jones who explains it as follows: 
+Action–domain–responder (ADR) is a software architectural pattern that was proposed by Paul M. Jones as a refinement of Model–view–controller (MVC) that is better suited for web applications. He explain it as follows: 
 
 ## Action Domain Responder
 
