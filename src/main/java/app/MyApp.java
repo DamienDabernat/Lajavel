@@ -11,7 +11,9 @@ import lajavel.Route;
 public class MyApp {
     public static void main(String[] args) {
         Application.start(7070);
+        // Register route through MVC pattern
         Route.register(HttpVerb.GET, "/", IndexController.class, "index");
+        // Register route through ADR pattern
         Route.register(HttpVerb.GET, "/html/search", ShowBookAction.class, ShowBookHtmlResponder.class);
         Route.register(HttpVerb.GET, "/api/search", ShowBookAction.class, ShowBookApiResponder.class);
 

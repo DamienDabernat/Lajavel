@@ -35,11 +35,25 @@ To start the server simply write :
 
 Then you can register any route you want :
 
-`Route.get("/", IndexAction.class.getName(), IndexResponder.class.getName());`
+```java
+public class MyApp {
+    public static void main(String[] args) {
+        Application.start(7070);
+        // Register route through MVC pattern
+        Route.register(HttpVerb.GET, "/", IndexController.class, "index");
+        // Register route through ADR pattern
+        Route.register(HttpVerb.GET, "/html/search", ShowBookAction.class, ShowBookHtmlResponder.class);
+        Route.register(HttpVerb.GET, "/api/search", ShowBookAction.class, ShowBookApiResponder.class);
+
+    }
+}
+```
+
+## ADR pattern
 
 ### Action
 
-To create an action you must extends the Action class as follow :
+To create an action you must extend the Action class as follows :
 
 ```java
 public class IndexAction extends Action {
@@ -80,4 +94,20 @@ public class IndexResponder extends Responder {
 }
 
 ```
+
+## MVC pattern
+
+Once you have registered your controller through the route you can create it as follows :
+
+```java
+public class IndexController extends Controller {
+    public void index(Context context) {
+        context.html(View.make("index"));
+    }
+}
+```
+
+The method name must be the same as the route you registered, and you must have a `context` parameter.
+
+Don't forget to create the `index.html` file in the `resources/views` folder.
 
