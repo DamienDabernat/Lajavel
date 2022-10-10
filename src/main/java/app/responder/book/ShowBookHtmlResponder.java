@@ -7,14 +7,10 @@ import io.javalin.http.Context;
 
 public class ShowBookHtmlResponder extends Responder {
 
-    public ShowBookHtmlResponder(Context context) {
-        super(context);
-    }
-
     @Override
-    public void respond() {
+    public void respond(Context context) {
         Book book = this.call(Book.class);
-        this.context.header("Content-Type", "text/html");
-        this.context.html(View.make(book, "show"));
+        context.header("Content-Type", "text/html");
+        context.html(View.make(book, "show"));
     }
 }

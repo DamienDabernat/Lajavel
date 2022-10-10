@@ -6,9 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Responder {
-
-    protected Context context;
-
     private final Map<String, Object> objects = new HashMap<>();
 
     /**
@@ -35,10 +32,6 @@ public abstract class Responder {
         objects.put(object.getClass().getName(), object);
     }
 
-    public Responder(Context context) {
-        this.context = context;
-    }
-
-    public abstract void respond();
+    public abstract void respond(Context context);
 
 }

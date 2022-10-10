@@ -6,13 +6,9 @@ import io.javalin.http.Context;
 
 public class ShowBookApiResponder extends Responder {
 
-    public ShowBookApiResponder(Context context) {
-        super(context);
-    }
-
     @Override
-    public void respond() {
+    public void respond(Context context) {
         Book book = this.call(Book.class);
-        this.context.result(book.toString());
+        context.result(book.toString());
     }
 }

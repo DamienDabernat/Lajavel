@@ -4,7 +4,6 @@ public class Book {
 
     public String title;
     public Author author;
-
     public String isbn;
 
     public Book(String title, Author author, String isbn) {

@@ -16,6 +16,7 @@ public final class Application {
     public static Application start(int port) {
         if (instance == null) {
             instance = new Application(port);
+            Log.info("Application started");
         }
         return instance;
     }
