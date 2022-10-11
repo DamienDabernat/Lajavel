@@ -13,8 +13,4 @@ public class Author {
         return "https://avatars.dicebear.com/api/miniavs/" + this.firstname + this.lastname + ".svg";
     }
 
-    @Override
-    public String toString() {
-        return firstname + ' ' + lastname;
-    }
 }

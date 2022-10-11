@@ -11,6 +11,6 @@ public class ShowBookHtmlResponder extends Responder {
     public void respond(Context context) {
         Book book = this.call(Book.class);
         context.header("Content-Type", "text/html");
-        context.html(View.make(book, "show"));
+        context.html(View.make("show", book, book.author));
     }
 }

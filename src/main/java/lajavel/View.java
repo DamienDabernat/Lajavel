@@ -10,20 +10,21 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 public class View {
 
 
     public static String make(String viewName) {
-        return View.make(null, viewName);
+        return View.make(viewName, (Object) null);
     }
 
     // https://stackoverflow.com/a/70189780
-    public static String make(Object obj, String viewName) {
+    public static String make(String viewName, Object... objects) {
 
         String viewContent = getViewContent(viewName);
 
-        if(obj == null) {
+        if(objects == null) {
             return viewContent;
         }
 
@@ -33,13 +34,35 @@ public class View {
         StringBuffer sb = new StringBuffer();
 
         while (m.find()) {
-            String oneProperty = m.group(1).replaceAll("\\s+","");
-            Object propertyValue = getProperty(Object.class, obj, oneProperty);
-            if(propertyValue != null) {
-                m.appendReplacement(sb, propertyValue.toString());
-            } else {
-                m.appendReplacement(sb, getMethod(String.class, obj, oneProperty));
+            String rawStringOfAnObject = m.group(1).replaceAll("\\s+",""); // remove space
+
+            String[] objectAndProperty = rawStringOfAnObject.split("\\."); // split by dot
+            String objectName = objectAndProperty[0];
+            String propertyName = objectAndProperty[1];
+
+            for (Object object : Stream.of(objects).toArray()) {
+
+                String simpleClassName = object.getClass().getSimpleName().toLowerCase();
+                if(simpleClassName.equals(objectName)) {
+
+                    propertyName = propertyName.replaceAll("\\s+","");
+
+                    boolean isMethod = false;
+                    if(propertyName.contains("()")) {
+                        isMethod = true;
+                        propertyName = propertyName.replace("()", "");
+                    }
+
+                    if(!isMethod) {
+                        Object propertyValue = getProperty(Object.class, object, propertyName);
+                        m.appendReplacement(sb, propertyValue.toString());
+                    } else { // it's a method not a field
+                        m.appendReplacement(sb, getMethod(String.class, object, propertyName));
+                    }
+                }
             }
+
+
 
         }
 

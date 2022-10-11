@@ -5,8 +5,15 @@
 
 <center><br />
 
-<img src="{{ getCover }}" width="120"/> <br />
+<img src="{{ book.getCover() }}" width="120"/> <br />
 
-Le livre est <b>{{ title }}</b> de {{ author }}!
+<br />
+
+Le livre est <b>{{ book.title }}</b> de {{ author.firstname }} {{ author.lastname }} !
+
+<br />
+
+<img src="{{ author.getAvatar() }}" width="64"/> <br />
+
 
 </center></html>
