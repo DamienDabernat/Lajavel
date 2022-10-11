@@ -8,7 +8,7 @@ public class ShowBookApiResponder extends Responder {
 
     @Override
     public void respond(Context context) {
-        Book book = this.call(Book.class);
+        Book book = this.fetch(Book.class);
         context.result(book.toString());
     }
 }

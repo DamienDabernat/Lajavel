@@ -62,8 +62,8 @@ public class Route {
 
     protected static void invokeAction(Context context, Class<?> actionClass, Class<?> responderClass) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Responder responder = (Responder) responderClass.getDeclaredConstructor().newInstance();
-        Action action = (Action) actionClass.getDeclaredConstructor().newInstance();
-        action.execute(context, responder);
+        Action action = (Action) actionClass.getDeclaredConstructor(Responder.class).newInstance(responder);
+        action.execute(context);
     }
 
 }

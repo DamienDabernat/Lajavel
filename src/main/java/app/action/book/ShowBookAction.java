@@ -8,11 +8,15 @@ import io.javalin.http.Context;
 
 public class ShowBookAction extends Action {
 
+    public ShowBookAction(Responder responder) {
+        super(responder);
+    }
+
     @Override
-    public void execute(Context context, Responder responder) {
+    public void execute(Context context) {
         String isbn = context.req.getParameter("isbn");
         Book book = BookRepository.getOneFromIsbn(isbn);
-        responder.define(book);
-        responder.respond(context);
+        this.share(book);
+        this.respond(context);
     }
 }

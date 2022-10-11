@@ -9,7 +9,7 @@ public class ShowBookHtmlResponder extends Responder {
 
     @Override
     public void respond(Context context) {
-        Book book = this.call(Book.class);
+        Book book = this.fetch(Book.class);
         context.header("Content-Type", "text/html");
         context.html(View.make("show", book, book.author));
     }
