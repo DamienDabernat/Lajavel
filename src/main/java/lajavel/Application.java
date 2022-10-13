@@ -13,12 +13,13 @@ public final class Application {
         this.server = Javalin.create().start(this.port);
     }
 
-    public static Application start(int port) {
+    public static void start(int port) {
         if (instance == null) {
             instance = new Application(port);
             Log.info("Application started");
+        } else {
+            throw new RuntimeException("Application already started");
         }
-        return instance;
     }
 
     public static Application getInstance() {

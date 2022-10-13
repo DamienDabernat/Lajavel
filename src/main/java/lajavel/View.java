@@ -1,5 +1,9 @@
 package lajavel;
 
+import app.domain.entity.Author;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -8,23 +12,25 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.Arrays;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
 public class View {
 
 
     public static String make(String viewName) {
-        return View.make(viewName, (Object) null);
+        return View.make(viewName, (Map.Entry<String, Object>) null);
     }
 
     // https://stackoverflow.com/a/70189780
-    public static String make(String viewName, Object... objects) {
+    @SafeVarargs
+    public static String make(String viewName, Map.Entry<String, Object>... entries) {
 
         String viewContent = getViewContent(viewName);
 
-        if(objects == null) {
+        if(entries == null) {
             return viewContent;
         }
 
@@ -34,41 +40,44 @@ public class View {
         StringBuffer sb = new StringBuffer();
 
         while (m.find()) {
+
             String rawStringOfAnObject = m.group(1).replaceAll("\\s+",""); // remove space
-
             String[] objectAndProperty = rawStringOfAnObject.split("\\."); // split by dot
-            String objectName = objectAndProperty[0];
-            String propertyName = objectAndProperty[1];
 
-            for (Object object : Stream.of(objects).toArray()) {
-
-                String simpleClassName = object.getClass().getSimpleName().toLowerCase();
-                if(simpleClassName.equals(objectName)) {
-
-                    propertyName = propertyName.replaceAll("\\s+","");
-
-                    boolean isMethod = false;
-                    if(propertyName.contains("()")) {
-                        isMethod = true;
-                        propertyName = propertyName.replace("()", "");
-                    }
-
-                    if(!isMethod) {
-                        Object propertyValue = getProperty(Object.class, object, propertyName);
-                        m.appendReplacement(sb, propertyValue.toString());
-                    } else { // it's a method not a field
-                        m.appendReplacement(sb, getMethod(String.class, object, propertyName));
-                    }
-                }
+            if(objectAndProperty.length <= 1) {
+                throw new RuntimeException("You must specify an object and a property in your html");
             }
 
+            String objectName = objectAndProperty[0]; //Dans le HTML on a {{toto.firstname}} -> toto
+            String propertyName = objectAndProperty[1]; //Dans le HTML on a {{toto.firstname}} -> firstname
 
-
+            for (Map.Entry<String, Object> entry : entries) {
+                if(entry.getKey().equals(objectName)) {
+                    m.appendReplacement(sb, View.getValueOf(propertyName, entry.getValue()));
+                    break;
+                }
+            }
         }
 
         m.appendTail(sb);
 
         return sb.toString();
+    }
+
+    public static String getValueOf(String propertyName, Object object) {
+
+            boolean isMethod = false;
+            if(propertyName.endsWith("()")) {
+                isMethod = true;
+                propertyName = propertyName.replace("()", "");
+            }
+
+            if(!isMethod) {
+                Object propertyValue = getProperty(Object.class, object, propertyName);
+                return propertyValue.toString();
+            } else { // it's a method not a field
+                return getMethod(String.class, object, propertyName);
+            }
     }
 
     public static String getViewContent(String viewName) {
@@ -115,8 +124,12 @@ public class View {
         }
         catch (Exception e) {
             // Do nothing, we'll return the default value
+            throw new RuntimeException(e);
         }
 
         return clazz.cast(returnValue);
     }
+
+
+
 }

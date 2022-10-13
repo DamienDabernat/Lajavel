@@ -8,7 +8,7 @@ public final class Log {
     private final Logger logger;
 
     private Log() {
-        this.logger = org.slf4j.LoggerFactory.getLogger("lajavel");
+        this.logger = org.slf4j.LoggerFactory.getLogger("Lajavel");
     }
 
     public static Log getInstance() {

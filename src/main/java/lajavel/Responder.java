@@ -5,6 +5,7 @@ import io.javalin.http.Context;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public abstract class Responder {
     private final Map<String, Object> objects = new HashMap<>();
@@ -33,11 +34,7 @@ public abstract class Responder {
         objects.put(object.getClass().getName(), object);
     }
 
-    public void share(Object... objects) {
-        for (Object object : Arrays.stream(objects).toArray()) {
-            share(object);
-        }
-    }
+    public void share(Object... objects) { Arrays.stream(objects).forEach(this::share); }
 
     public abstract void respond(Context context);
 

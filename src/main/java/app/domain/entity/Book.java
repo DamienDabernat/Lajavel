@@ -13,7 +13,7 @@ public class Book {
     }
 
     public String getCover() {
-        return "https://covers.openlibrary.org/b/isbn/" + this.isbn + "-M.jpg";
+        return "https://covers.openlibrary.org/b/isbn/" + this.isbn + "-L.jpg";
     }
 
     @Override

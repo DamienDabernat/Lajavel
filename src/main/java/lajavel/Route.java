@@ -25,6 +25,9 @@ public class Route {
                 case DELETE -> app.server.delete(routeName, context -> {
                     invokeAction(context, actionClass, responderClass);
                 });
+                case PATCH -> app.server.patch(routeName, context -> {
+                    invokeAction(context, actionClass, responderClass);
+                });
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -46,6 +49,9 @@ public class Route {
                     invokeController(context, controllerClass, methodName);
                 });
                 case DELETE -> app.server.delete(routeName, context -> {
+                    invokeController(context, controllerClass, methodName);
+                });
+                case PATCH -> app.server.patch(routeName, context -> {
                     invokeController(context, controllerClass, methodName);
                 });
             }
