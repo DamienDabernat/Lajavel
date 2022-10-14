@@ -1,8 +1,6 @@
 package app.responder.book;
 
-import app.domain.entity.Author;
 import app.domain.entity.Book;
-import kotlin.Pair;
 import lajavel.Responder;
 import lajavel.View;
 import io.javalin.http.Context;

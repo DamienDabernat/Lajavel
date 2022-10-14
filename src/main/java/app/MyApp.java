@@ -6,16 +6,11 @@ import app.domain.entity.Author;
 import app.domain.entity.Book;
 import app.responder.book.ShowBookApiResponder;
 import app.responder.book.ShowBookHtmlResponder;
-import lajavel.Application;
-import lajavel.HttpVerb;
-import lajavel.Log;
-import lajavel.Route;
-
-import java.lang.reflect.Field;
+import lajavel.*;
 
 public class MyApp {
     public static void main(String[] args) {
-        Application.start(7070);
+        Application.start(7070, Application.Mode.DEVELOPMENT);
 
         // Register route through MVC pattern
         Route.register(HttpVerb.GET, "/", IndexController.class, "index");
