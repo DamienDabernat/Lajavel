@@ -1,6 +1,5 @@
 package lajavel;
 
-
 import io.javalin.http.Context;
 
 import java.lang.reflect.InvocationTargetException;
@@ -61,15 +60,20 @@ public class Route {
     }
 
     protected static void invokeController(Context context, Class<?> controllerClass, String methodName) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        Response response = new Response(context);
+
         Controller controller = (Controller) controllerClass.getDeclaredConstructor().newInstance();
-        Method controllerMethod = controllerClass.getMethod(methodName, Context.class);
-        controllerMethod.invoke(controller, context);
+        Method controllerMethod = controllerClass.getMethod(methodName, Response.class);
+        controllerMethod.invoke(controller, response);
+
     }
 
     protected static void invokeAction(Context context, Class<?> actionClass, Class<?> responderClass) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        Response response = new Response(context);
+
         Responder responder = (Responder) responderClass.getDeclaredConstructor().newInstance();
         Action action = (Action) actionClass.getDeclaredConstructor(Responder.class).newInstance(responder);
-        action.execute(context);
+        action.execute(response);
     }
 
 }

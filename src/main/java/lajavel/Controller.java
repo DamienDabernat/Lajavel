@@ -1,3 +1,9 @@
 package lajavel;
 
-public abstract class Controller { }
+import io.javalin.http.Context;
+
+public abstract class Controller {
+
+
+
+}

@@ -1,13 +1,11 @@
 package lajavel;
 
-import io.javalin.http.Context;
-
 public abstract class Action {
 
     private Responder responder;
 
-    protected void respond(Context context) {
-        this.responder.respond(context);
+    protected void respond(Response response) {
+        this.responder.respond(response);
     }
 
     protected void share(Object object) {
@@ -18,5 +16,5 @@ public abstract class Action {
         this.responder = responder;
     }
 
-    public abstract void execute(Context context);
+    public abstract void execute(Response response);
 }

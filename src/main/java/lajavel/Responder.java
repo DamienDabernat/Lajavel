@@ -36,6 +36,6 @@ public abstract class Responder {
 
     public void share(Object... objects) { Arrays.stream(objects).forEach(this::share); }
 
-    public abstract void respond(Context context);
+    public abstract void respond(Response response);
 
 }

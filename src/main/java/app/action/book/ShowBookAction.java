@@ -4,7 +4,7 @@ import app.domain.entity.Book;
 import app.domain.repository.BookRepository;
 import lajavel.Action;
 import lajavel.Responder;
-import io.javalin.http.Context;
+import lajavel.Response;
 
 public class ShowBookAction extends Action {
 
@@ -13,10 +13,10 @@ public class ShowBookAction extends Action {
     }
 
     @Override
-    public void execute(Context context) {
-        String isbn = context.req.getParameter("isbn");
+    public void execute(Response response) {
+        String isbn = response.request.getParameter("isbn");
         Book book = BookRepository.getOneFromIsbn(isbn);
         this.share(book);
-        this.respond(context);
+        this.respond(response);
     }
 }
