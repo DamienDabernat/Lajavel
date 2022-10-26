@@ -1,5 +1,3 @@
-# Lajavel
-
 ![logo](src/main/resources/images/logo_small.png)
 
 Lajavel is a project given to students to deepen their knowledge in object-oriented programming.
