@@ -1,5 +1,7 @@
 # Lajavel
 
+![logo](src/main/resources/images/logo_small.png)
+
 Lajavel is a project given to students to deepen their knowledge in object-oriented programming.
 
 It is an attempt at a framework with the particularity of not following the conventional MVC architecture design pattern but rather the ADR pattern.
