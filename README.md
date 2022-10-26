@@ -138,7 +138,12 @@ Action–domain–responder (ADR) is a software architectural pattern that was p
 
 #### Action Domain Responder
 
-![ADR](https://github.com/pmjones/adr/raw/master/adr.png)
+```mermaid
+classDiagram
+Domain <|-- Action
+Responder <|-- Action
+Action <.. Domain
+```
 
 _Action Domain Responder_ organizes a single user interface interaction between an HTTP client and a HTTP server-side application into three distinct roles.
 
