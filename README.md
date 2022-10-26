@@ -37,7 +37,8 @@ _Note: This project is a student project_
 1. [Installation](#installation)
 2. [Getting started](#getting-started)
 3. [Features](#features)
-4. [Further Reading](#further-reading)
+4. [Graphic design](#graphic-design)
+5. [Further Reading](#further-reading)
 
 ## Installation
     
@@ -131,6 +132,16 @@ Don't forget to create the `index.html` file in the `resources/views` folder.
 ## Features
 
 - HTML Template engine
+
+## Graphic design
+
+<div align="center">
+
+List of colors used in this projects :
+
+![Colors](src/main/resources/images/colors.png)
+
+</div>
 
 ## Further Reading
 
