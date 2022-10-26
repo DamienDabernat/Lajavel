@@ -135,17 +135,12 @@ Don't forget to create the `index.html` file in the `resources/views` folder.
 
 ## Graphic design
 
-<div align="center">
-
 List of colors used in this projects :
 
 ![Color](https://shields.io/badge/-%237473CA-7473CA)
 ![Color](https://shields.io/badge/-%23F85293-F85293)
 ![Color](https://shields.io/badge/-%23F3E66F-F3E66F)
 ![Color](https://shields.io/badge/-%23774983-774983)
-
-
-</div>
 
 ## Further Reading
 
