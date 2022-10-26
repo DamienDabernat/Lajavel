@@ -39,11 +39,11 @@ _Note: This project is a student project_
 3. [Features](#features)
 4. [Further Reading](#further-reading)
 
-### Installation
+## Installation
     
 Git clone this project.
 
-### Getting started
+## Getting started
 
 To start the server simply write :
 
@@ -66,9 +66,9 @@ public class MyApp {
 ```
 
 
-#### ADR pattern
+### ADR pattern
 
-##### Action
+#### Action
 
 To create an action you must extend the Action class as follows :
 
@@ -90,7 +90,7 @@ public class IndexAction extends Action {
 }
 ```
 
-##### Responder
+#### Responder
 
 The response function is what the server will respond to. 
 In this function you can change the response as much as you want. 
@@ -112,7 +112,7 @@ public class IndexResponder extends Responder {
 
 ```
 
-#### MVC pattern
+### MVC pattern
 
 Once you have registered your controller through the route you can create it as follows :
 
@@ -128,15 +128,13 @@ The method name must be the same as the route you registered, and you must have 
 
 Don't forget to create the `index.html` file in the `resources/views` folder.
 
-### Features
+## Features
 
 - HTML Template engine
 
-### Further Reading
+## Further Reading
 
 Action–domain–responder (ADR) is a software architectural pattern that was proposed by Paul M. Jones as a refinement of Model–view–controller (MVC) that is better suited for web applications. He explain it as follows: 
-
-#### Action Domain Responder
 
 ```mermaid
 classDiagram
