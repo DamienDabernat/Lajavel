@@ -2,7 +2,7 @@
 
 # Lajavel: A Student MVC / ADR web framework
 
-![logo](src/main/resources/images/logo_small.png)
+![logo](src/main/resources/images/logo_medium.png)
 
 [![latest release badge]][latest release link] [![github stars badge]][github stars link] [![github forks badge]][github forks link]
 
@@ -139,7 +139,11 @@ Don't forget to create the `index.html` file in the `resources/views` folder.
 
 List of colors used in this projects :
 
-![Colors](src/main/resources/images/colors.png)
+![Color](https://shields.io/badge/-%237473CA-7473CA)
+![Color](https://shields.io/badge/-%23F85293-F85293)
+![Color](https://shields.io/badge/-%23F3E66F-F3E66F)
+![Color](https://shields.io/badge/-%23774983-774983)
+
 
 </div>
 
