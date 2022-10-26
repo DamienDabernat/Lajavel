@@ -12,7 +12,8 @@ public class BookRepository {
 
     private BookRepository() {
         Book book = new Book("The Hitchhiker's Guide to the Galaxy", new Author("Douglas", "Adams"), "2207261883");
-        this.data = List.of(book);
+        Book book2 = new Book("The Restaurant at the End of the Universe", new Author("Douglas", "Adams"), "0345391802");
+        this.data = List.of(book, book2);
     }
 
     public static BookRepository getInstance() {
