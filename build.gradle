@@ -10,8 +10,8 @@ repositories {
 }
 
 dependencies {
-    implementation 'io.javalin:javalin:4.6.4'
-    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.31'
+    implementation 'io.javalin:javalin:5.1.4'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.3'
     testImplementation('org.junit.jupiter:junit-jupiter:5.9.0')
 }
 

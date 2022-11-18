@@ -26,7 +26,7 @@ public final class Application {
     private Application(int port, Mode mode) {
         this.port = port;
         this.server = Javalin.create(config -> {
-            config.addStaticFiles("/public", Location.CLASSPATH);
+            config.staticFiles.add("/public", Location.CLASSPATH);
         }).start(this.port);
         this.mode = mode;
     }

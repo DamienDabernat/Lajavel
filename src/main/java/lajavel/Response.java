@@ -1,8 +1,8 @@
 package lajavel;
 
 import io.javalin.http.Context;
+import jakarta.servlet.http.HttpServletRequest;
 
-import javax.servlet.http.HttpServletRequest;
 
 public class Response {
 
@@ -11,7 +11,7 @@ public class Response {
 
     public Response(Context context) {
         this.context = context;
-        this.request = context.req;
+        this.request = context.req();
     }
 
     public void html(String html) {
