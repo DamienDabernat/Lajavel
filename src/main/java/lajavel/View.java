@@ -35,6 +35,8 @@ public class View {
             return viewContent;
         }
 
+        viewContent = importCss(viewContent);
+
         Matcher m = Pattern.compile("\\{\\{([^{{}}]*)\\}\\}").matcher(viewContent);
 
         // Creating the target string buffer
@@ -81,10 +83,63 @@ public class View {
             }
     }
 
-    public static String getViewContent(String viewName) {
+    public  static String importCss(String viewContent) {
+        // get CSS by import
+        final String cssRegex = "\\{% import (\\S*) %\\}"; // Dans le html on a {% import nomdufichiercss %}
+        
+        // Ici on effectue le include avant de s'attaquer au CSS (returnIncluded)
+        final Matcher cssMatcher = Pattern.compile(cssRegex, Pattern.DOTALL).matcher(returnIncluded(viewContent));
+        StringBuffer sbImport = new StringBuffer();
 
+        while (cssMatcher.find()) {
+            String css_url = "<link rel='stylesheet' type='text/css' href='/css/" + cssMatcher.group(1) + ".css'>";
+            cssMatcher.appendReplacement(sbImport, css_url);
+        }
+        cssMatcher.appendTail(sbImport);
+
+        viewContent = sbImport.toString();
+
+        return viewContent;
+    }
+
+    public static String returnIncluded(String viewContent) {
+        StringBuffer sbImport = new StringBuffer();
+
+        final String includeRegex = "\\{% include (\\S*) %\\}";
+
+        final Matcher includeMatcher = Pattern.compile(includeRegex, Pattern.DOTALL).matcher(viewContent);
+
+        while (includeMatcher.find()) {
+            final String blockRegex = "\\{% block (\\S*) %\\}(.*)\\{% endblock %\\}";
+            final Matcher blockMatcher = Pattern.compile(blockRegex, Pattern.DOTALL).matcher(View.getViewContent(includeMatcher.group(1)));
+            while (blockMatcher.find()){
+                includeMatcher.appendReplacement(sbImport, blockMatcher.group(2));
+            }
+        }
+        includeMatcher.appendTail(sbImport);
+
+        viewContent = sbImport.toString();
+
+        return viewContent;
+    }
+
+    public static String getViewContent(String viewName) {
+        // Dans le HTML on a {% include Component:nomdufichierhtml %}
+        String[] viewNameCategorized = viewName.split("\\:");
+
+        String viewNameCategory = viewNameCategorized[0];
+
+        if (viewNameCategorized.length > 1) {
+            viewName = viewNameCategorized[1];
+        }
+
+        if (viewNameCategory.equals("Component")) {
+            viewNameCategory = "components/";
+        } else {
+            viewNameCategory = "views/";
+        }
         // Get the file url, not working in JAR file.
-        URL resource = View.class.getClassLoader().getResource("views/" + viewName + ".view");
+        URL resource = View.class.getClassLoader().getResource(viewNameCategory + viewName + ".view");
 
         if (resource == null) {
             throw new IllegalArgumentException("file not found!");

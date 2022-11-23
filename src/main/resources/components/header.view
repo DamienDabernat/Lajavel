@@ -1,0 +1,6 @@
+{% block header %}
+    {% import header %}
+    <header>
+        <h1>Welcome In Lajavel</h1>
+    </header>
+{% endblock %}
