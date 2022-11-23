@@ -4,6 +4,8 @@
   <link href="/css/index.css" rel="stylesheet">
 </head>
 
+{% include Component:header %}
+
 <center><br />
 
 Bonjour,
